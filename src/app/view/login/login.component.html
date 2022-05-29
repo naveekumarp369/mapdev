@@ -1,0 +1,22 @@
+<!-- <mdb-tabs [pills]="true">
+    <mdb-tab title="Tab 1">Tab content 1</mdb-tab>
+    <mdb-tab title="Tab 2">Tab content 2</mdb-tab>
+    <mdb-tab title="Tab 3"> </mdb-tab>
+  </mdb-tabs>
+  -->
+
+<!-- 
+  <div class="map-container">
+    <div class="map-frame">
+      <div id="map"></div>
+    </div>
+  </div> -->
+
+
+  <div
+  class="map"
+  leaflet
+  [leafletOptions]="options"
+  [leafletLayers]="mapLayers"
+  (leafletMapReady)="onMapReady($event)"
+></div>
