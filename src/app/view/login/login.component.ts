@@ -6,8 +6,6 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import * as L from 'leaflet';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { latLng, tileLayer } from 'leaflet';
 import { geoJSON, Map } from 'leaflet';
 import { geojsonFeature } from 'src/app/helper/geo-json-type.enum';
@@ -22,26 +20,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() value: any;
   @Input()
   customValues!: string;
-
-  mapData: any;
-
   maps: Map | undefined;
-  selectedOption = geojsonFeature.DISTRICT;
   mapLayers: any[] = [];
-
-  options = {
-    attributionControl: false,
-    minZoom: 10.5,
-    maxZoom: 12,
-    zoomControl: true,
-    zoomSnap: 0.1,
-    gestureHandling: true,
-    layers: [
-    ],
-    zoom: 11,
-    center: latLng([11.2840, 78.1108]),
-  };
-
   // mapOptions = {
   //   attributionControl: false,
   //   center: latLng([11.1271, 78.6569]),
@@ -57,8 +37,22 @@ export class LoginComponent implements OnInit, AfterViewInit, OnChanges {
   //   layers: ['assets/geo-json/district.min.geojson'],
   // };
 
+  options = {
+    attributionControl: false,
+    minZoom: 10.9,
+    maxZoom: 12,
+    zoomControl: true,
+    zoomSnap: 0.1,
+    gestureHandling: true,
+    layers: [
+    ],
+    zoom: 10.9,
+    center: latLng([12.9999,	80.2707]),
+  };
+
+
   geoJson = {
-    url: 'assets/geo-json/district.min.geojson',
+    url: 'assets/geo-json/chennai.min.geojson',
     style: {
       fillColor: '#EBEBEB',
       weight: 0.75,
@@ -101,7 +95,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   cbeRenderMap(): void {
-    this.http.get("assets/geo-json/namakkal.min.geojson").subscribe((res: any) => {
+    this.http.get(this.geoJson.url).subscribe((res: any) => {
       this.mapLayers.push(geoJSON(res, { style: this.geoJson.style,
       
       }));
